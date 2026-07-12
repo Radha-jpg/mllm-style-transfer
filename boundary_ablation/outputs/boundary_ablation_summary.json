@@ -1,0 +1,30 @@
+{
+  "experiment": "boundary coherence ablation",
+  "backbone": "SD1.5-Inpainting + IP-Adapter",
+  "ip_scale": 0.5,
+  "results": [
+    {
+      "strategy": "Baseline (no coherence)",
+      "boundary_lpips": 0.0439
+    },
+    {
+      "strategy": "Approach 1: feathered blend",
+      "boundary_lpips": 0.0366
+    },
+    {
+      "strategy": "Approach 2: AdaIN alignment",
+      "boundary_lpips": 0.0526
+    },
+    {
+      "strategy": "Approach 3: attention routing",
+      "boundary_lpips": 0.0554
+    }
+  ],
+  "nst_reference": {
+    "baseline": 0.0678,
+    "feathered": 0.0529,
+    "adain": 0.0705,
+    "cross_attn_nst": 0.0713
+  },
+  "created_at": "2026-07-06T23:49:46.168413"
+}

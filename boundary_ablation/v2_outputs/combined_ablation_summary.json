@@ -1,0 +1,55 @@
+{
+  "experiment": "combined attention routing and feathered blend",
+  "backbone": "SD1.5-Inpainting + IP-Adapter",
+  "ip_scale": 0.5,
+  "results": [
+    {
+      "variant": "A: naive",
+      "boundary_lpips": 0.0459,
+      "boundary_clip": 0.7454
+    },
+    {
+      "variant": "B: naive + feathered",
+      "boundary_lpips": 0.0417,
+      "boundary_clip": 0.7448
+    },
+    {
+      "variant": "C: attention routing",
+      "boundary_lpips": 0.0628,
+      "boundary_clip": 0.754
+    },
+    {
+      "variant": "D: attention + feathered",
+      "boundary_lpips": 0.0524,
+      "boundary_clip": 0.7541
+    }
+  ],
+  "created_at": "2026-07-07T19:52:31.059336",
+  "combined_scores": [
+    {
+      "variant": "A: naive",
+      "boundary_lpips": 0.0459,
+      "boundary_clip": 0.7454,
+      "boundary_score": 0.7224
+    },
+    {
+      "variant": "B: naive + feathered",
+      "boundary_lpips": 0.0417,
+      "boundary_clip": 0.7448,
+      "boundary_score": 0.7239
+    },
+    {
+      "variant": "C: attention routing",
+      "boundary_lpips": 0.0628,
+      "boundary_clip": 0.754,
+      "boundary_score": 0.7226
+    },
+    {
+      "variant": "D: attention + feathered",
+      "boundary_lpips": 0.0524,
+      "boundary_clip": 0.7541,
+      "boundary_score": 0.7279
+    }
+  ],
+  "lambda": 0.5
+}

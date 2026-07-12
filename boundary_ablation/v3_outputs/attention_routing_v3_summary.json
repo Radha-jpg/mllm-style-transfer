@@ -1,0 +1,79 @@
+{
+  "experiment": "attention-routed regions vs naive regions (with and without feathered blend)",
+  "backbone": "SD1.5-Inpainting + IP-Adapter with RoutedIPAttnProcessor",
+  "ip_scale": 0.5,
+  "seed": 42,
+  "routing": {
+    "method": "sigmoid of signed distance to sky/mountain boundary",
+    "temperature": 8.0,
+    "convention": "routing_mask = \"amount of style A (Van Gogh)\"; 1 = pure A, 0 = pure B, 0.5 = mix"
+  },
+  "variants": [
+    "A: naive",
+    "B: naive + feathered",
+    "R: attention-routed",
+    "R+F: routed + feathered"
+  ],
+  "sanity_check_full_image_lpips": 0.0,
+  "results": [
+    {
+      "variant": "A: naive",
+      "sky_lpips": 0.0459,
+      "sky_int_clip": 0.7954,
+      "sky_bnd_clip": 0.7377,
+      "sky_understyl": 0.0576,
+      "fore_lpips": 0.1135,
+      "fore_int_clip": 0.7073,
+      "fore_bnd_clip": 0.7289,
+      "fore_understyl": -0.0216,
+      "mean_lpips": 0.0797,
+      "mean_understyl": 0.018
+    },
+    {
+      "variant": "B: naive + feathered",
+      "sky_lpips": 0.0417,
+      "sky_int_clip": 0.7946,
+      "sky_bnd_clip": 0.7357,
+      "sky_understyl": 0.059,
+      "fore_lpips": 0.1097,
+      "fore_int_clip": 0.7067,
+      "fore_bnd_clip": 0.734,
+      "fore_understyl": -0.0273,
+      "mean_lpips": 0.0757,
+      "mean_understyl": 0.0158
+    },
+    {
+      "variant": "R: attention-routed",
+      "sky_lpips": 0.0439,
+      "sky_int_clip": 0.7875,
+      "sky_bnd_clip": 0.7366,
+      "sky_understyl": 0.0509,
+      "fore_lpips": 0.1128,
+      "fore_int_clip": 0.705,
+      "fore_bnd_clip": 0.7379,
+      "fore_understyl": -0.0329,
+      "mean_lpips": 0.0784,
+      "mean_understyl": 0.009
+    },
+    {
+      "variant": "R+F: routed + feathered",
+      "sky_lpips": 0.0396,
+      "sky_int_clip": 0.7872,
+      "sky_bnd_clip": 0.7375,
+      "sky_understyl": 0.0497,
+      "fore_lpips": 0.1094,
+      "fore_int_clip": 0.7061,
+      "fore_bnd_clip": 0.742,
+      "fore_understyl": -0.036,
+      "mean_lpips": 0.0745,
+      "mean_understyl": 0.0069
+    }
+  ],
+  "B_vs_RF": {
+    "lpips_diff_RF_minus_B": -0.0012,
+    "understyl_diff_RF_minus_B": -0.0089,
+    "verdict": "R+F beats B on LPIPS AND does not increase the under-stylisation delta. Attention routing genuinely helps."
+  },
+  "notes": "RoutedIPAttnProcessor replaces IPAttnProcessor2_0 on every cross-attention layer. The processor accepts two IP-token blocks and blends their attention outputs per spatial position using a routing mask that is bilinearly interpolated to each layer's resolution. Sanity check verified that routing = 1 everywhere reproduces single-style Van Gogh output within LPIPS < 0.10.",
+  "created_at": "2026-07-09T14:21:37.071281"
+}

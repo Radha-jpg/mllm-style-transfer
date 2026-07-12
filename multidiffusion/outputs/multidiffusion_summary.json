@@ -1,0 +1,20 @@
+{
+  "method": "MultiDiffusion: per-region cross-attention routing",
+  "backbone": "SD1.5-Inpainting + IP-Adapter",
+  "scheduler": "DDIM",
+  "ip_scale": 0.5,
+  "num_steps": 30,
+  "results": {
+    "sky_lpips_multidiffusion": 0.0592,
+    "fore_lpips_multidiffusion": 0.1367,
+    "sky_lpips_md_feathered": 0.0506
+  },
+  "reference": {
+    "nst_baseline": 0.0676,
+    "sequential_ip_adapter": 0.0497,
+    "sequential_feathered": 0.0398,
+    "sequential_adain": 0.0525,
+    "sequential_attn_routing": 0.06
+  },
+  "created_at": "2026-07-02T22:54:50.158134"
+}

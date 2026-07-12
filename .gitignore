@@ -1,0 +1,15 @@
+# model weights - too large for github
+ip_adapter/weights/
+ip_adapter/weights/**
+**/*.pth
+**/*.bin
+**/*.safetensors
+**/.locks/
+**/blobs/
+
+# jupyter checkpoints
+**/.ipynb_checkpoints/
+
+# python cache
+**/__pycache__/
+**/*.pyc

@@ -1,0 +1,73 @@
+{
+  "experiment": "combined boundary re-inpainting and feathered blend",
+  "backbone": "SD1.5-Inpainting + IP-Adapter",
+  "ip_scale": 0.5,
+  "seed": 42,
+  "variants": [
+    "A: naive",
+    "B: naive + feathered",
+    "C: boundary re-inpaint",
+    "D: re-inpaint + feathered"
+  ],
+  "notes": "Variant C is boundary re-inpainting, not true attention routing. A true attention-routing implementation would modify the cross-attention layers of the SD1.5 UNet during the original per-region generation. That was out of scope; C is a diffusion-native proxy that operates on the same boundary zone after the fact.",
+  "results": [
+    {
+      "variant": "A: naive",
+      "sky_lpips": 0.0459,
+      "sky_int_clip": 0.7954,
+      "sky_bnd_clip": 0.7377,
+      "sky_understyl": 0.0576,
+      "fore_lpips": 0.1135,
+      "fore_int_clip": 0.7073,
+      "fore_bnd_clip": 0.7289,
+      "fore_understyl": -0.0216,
+      "mean_lpips": 0.0797,
+      "mean_understyl": 0.018
+    },
+    {
+      "variant": "B: naive + feathered",
+      "sky_lpips": 0.0417,
+      "sky_int_clip": 0.7946,
+      "sky_bnd_clip": 0.7357,
+      "sky_understyl": 0.059,
+      "fore_lpips": 0.1097,
+      "fore_int_clip": 0.7067,
+      "fore_bnd_clip": 0.734,
+      "fore_understyl": -0.0273,
+      "mean_lpips": 0.0757,
+      "mean_understyl": 0.0158
+    },
+    {
+      "variant": "C: boundary re-inpaint",
+      "sky_lpips": 0.0647,
+      "sky_int_clip": 0.8079,
+      "sky_bnd_clip": 0.7503,
+      "sky_understyl": 0.0576,
+      "fore_lpips": 0.1363,
+      "fore_int_clip": 0.693,
+      "fore_bnd_clip": 0.7364,
+      "fore_understyl": -0.0435,
+      "mean_lpips": 0.1005,
+      "mean_understyl": 0.0071
+    },
+    {
+      "variant": "D: re-inpaint + feathered",
+      "sky_lpips": 0.0539,
+      "sky_int_clip": 0.8076,
+      "sky_bnd_clip": 0.7434,
+      "sky_understyl": 0.0642,
+      "fore_lpips": 0.1259,
+      "fore_int_clip": 0.6935,
+      "fore_bnd_clip": 0.7397,
+      "fore_understyl": -0.0462,
+      "mean_lpips": 0.0899,
+      "mean_understyl": 0.009
+    }
+  ],
+  "B_vs_D": {
+    "lpips_diff_D_minus_B": 0.0142,
+    "understyl_diff_D_minus_B": -0.0068,
+    "verdict": "D does NOT improve on B for boundary LPIPS. Naive + feathered remains the recommendation."
+  },
+  "created_at": "2026-07-09T02:06:18.032724"
+}
