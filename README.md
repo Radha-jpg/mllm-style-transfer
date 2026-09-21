@@ -180,10 +180,6 @@ The dissertation discusses these in detail, together with directions for future 
 }
 ```
 
-## Third-party components
-
-This project builds on Stable Diffusion, IP-Adapter, Qwen2-VL, Grounding DINO, Segment Anything, CLIP, DINOv2, LPIPS, Diffusers and other open-source work, each of which remains under its own licence. Check those licences before reusing or redistributing any model, image or code.
-
 ## Acknowledgements
 
 Thanks to Dr Deblina Bhattacharjee and the Department of Computer Science at the University of Bath for their guidance and feedback.
